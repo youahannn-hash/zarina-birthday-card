@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efe2c6">
+  <title>Для Зарины</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Marck+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="paper-grain" aria-hidden="true"></div>
+  <main class="scene">
+    <p class="eyebrow">маленькое послание по особому случаю</p>
+    <h1>Для Зарины</h1>
+    <p class="hint" id="hint">Нажми на печать, чтобы открыть</p>
+
+    <button class="envelope-button" id="openCard" aria-label="Открыть поздравительную открытку" aria-expanded="false">
+      <div class="envelope" id="envelope">
+        <div class="letter">
+          <div class="letter-inner">
+            <p class="letter-kicker">написано с уважением… почти</p>
+            <h2>С днём рождения!</h2>
+            <div class="ornament">✦ ❦ ✦</div>
+            <p>Желаю тебе побольше поводов смеяться, людей, с которыми легко, и дней, после которых думаешь: «Вот это было хорошо».</p>
+            <p>Пусть всё задуманное получается, неприятности обходят стороной, а жизнь почаще подкидывает приятные сюрпризы.</p>
+            <p class="joke"></p>
+            <p>Оставайся такой же умной, смешной, немного язвительной и хорошей — сочетание, с которым, как выяснилось, довольно трудно справиться.</p>
+            <p class="signoff">С днём рождения.<br><span></span></p>
+            <div class="bottom-mark">❦</div>
+          </div>
+        </div>
+        <div class="envelope-back"></div>
+        <div class="flap"></div>
+        <div class="envelope-front"></div>
+        <div class="seal" aria-hidden="true"><span>З</span></div>
+      </div>
+    </button>
+
+    <p class="footer-note"></p>
+    <button class="replay" id="replay" hidden>Закрыть открытку</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

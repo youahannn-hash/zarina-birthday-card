@@ -1,0 +1,277 @@
+* { box-sizing: border-box; }
+
+:root {
+  --paper: #efe2c6;
+  --paper-light: #f8efd9;
+  --ink: #493426;
+  --wine: #7b302e;
+  --wine-dark: #54201f;
+  --gold: #b08a51;
+}
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255,250,231,.95), transparent 56%),
+    linear-gradient(135deg, #d4c09a, #eee1c3 48%, #cbb48a);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  overflow-x: hidden;
+}
+
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  z-index: 5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+
+.scene {
+  width: min(100% - 28px, 760px);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 42px 0 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  font-size: .85rem;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2.8rem, 10vw, 5.4rem);
+  font-weight: 500;
+  line-height: .98;
+  color: var(--wine-dark);
+}
+
+.hint {
+  margin: 0 0 28px;
+  font-size: 1.15rem;
+  font-style: italic;
+  opacity: .8;
+}
+
+.envelope-button {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: min(88vw, 440px);
+  height: min(62vw, 300px);
+  min-height: 220px;
+  max-height: 300px;
+  perspective: 1200px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope-button:focus-visible {
+  outline: 2px dashed var(--wine);
+  outline-offset: 12px;
+  border-radius: 10px;
+}
+
+.envelope {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  filter: drop-shadow(0 18px 20px rgba(73, 45, 23, .22));
+  transform-style: preserve-3d;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #c7a777;
+  border: 1px solid rgba(91, 58, 31, .35);
+  border-radius: 4px;
+}
+
+.letter {
+  position: absolute;
+  z-index: 2;
+  left: 5%;
+  width: 90%;
+  top: 4%;
+  height: 92%;
+  padding: 14px;
+  overflow: hidden;
+  background: var(--paper-light);
+  border: 1px solid #c5a979;
+  box-shadow: inset 0 0 0 5px rgba(176,138,81,.12), inset 0 0 0 6px rgba(176,138,81,.2);
+  transform: translateY(0) scale(.96);
+  transition: transform 1s cubic-bezier(.2,.7,.2,1), height 1s ease, top 1s ease;
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(151, 111, 62, .32);
+  pointer-events: none;
+}
+
+.letter-inner {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  padding: 8px 12px 10px;
+  text-align: left;
+  scrollbar-width: thin;
+  scrollbar-color: #b99a6b transparent;
+}
+
+.letter-kicker {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: .83rem;
+  letter-spacing: .06em;
+  font-style: italic;
+}
+
+.letter h2 {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  line-height: 1;
+  color: var(--wine-dark);
+  font-weight: 600;
+}
+
+.ornament {
+  text-align: center;
+  color: var(--gold);
+  margin: 8px 0 12px;
+  letter-spacing: .22em;
+}
+
+.letter-inner p:not(.letter-kicker) {
+  font-size: clamp(1.03rem, 3.1vw, 1.23rem);
+  line-height: 1.35;
+  margin: 0 0 12px;
+}
+
+.letter-inner .joke {
+  color: #6f2928;
+  font-weight: 600;
+}
+
+.signoff {
+  text-align: right;
+  font-family: "Marck Script", cursive;
+  font-size: 1.4rem !important;
+}
+
+.signoff span { font-size: 1.15rem; }
+.bottom-mark { text-align: center; color: var(--gold); font-size: 1.5rem; }
+
+.flap {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56%;
+  background: linear-gradient(145deg, #dec59a, #c9a776);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform .8s ease, z-index 0s .4s;
+  border-top: 1px solid rgba(91,58,31,.3);
+}
+
+.envelope-front {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: linear-gradient(145deg, #d8bb8d, #c5a06d);
+  clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 4px;
+  transition: opacity .5s ease .2s;
+}
+
+.seal {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 51%;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #e8cda0;
+  background: radial-gradient(circle at 35% 30%, #9d4941, var(--wine) 60%, var(--wine-dark));
+  box-shadow: 0 3px 7px rgba(66, 25, 20, .3), inset 0 0 0 2px rgba(231,196,145,.45), inset 0 0 0 5px rgba(75,20,20,.2);
+  font-family: "Marck Script", cursive;
+  font-size: 2rem;
+  transition: opacity .3s, transform .5s;
+}
+
+.envelope-button:hover .seal { transform: translate(-50%, -50%) scale(1.06) rotate(-5deg); }
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .letter {
+  top: -28%;
+  height: 156%;
+  transform: translateY(-2%) scale(1);
+  transition-delay: .25s;
+}
+
+.envelope.open .envelope-front { opacity: .08; transition-delay: 0s; }
+.envelope.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(.4); pointer-events: none; }
+
+.footer-note {
+  margin: 26px 0 0;
+  font-size: .95rem;
+  font-style: italic;
+  opacity: .7;
+}
+
+.replay {
+  margin-top: 15px;
+  border: 1px solid rgba(84,32,31,.45);
+  background: rgba(248,239,217,.45);
+  color: var(--wine-dark);
+  padding: 8px 16px;
+  border-radius: 2px;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.replay[hidden] { display: none; }
+
+@media (max-width: 480px) {
+  .scene { padding-top: 28px; justify-content: center; }
+  .eyebrow { font-size: .68rem; letter-spacing: .13em; }
+  .hint { margin-bottom: 24px; font-size: 1rem; }
+  .envelope-button { height: 245px; min-height: 245px; }
+  .letter { padding: 10px; }
+  .letter-inner { padding: 7px 8px 8px; }
+  .letter-inner p:not(.letter-kicker) { line-height: 1.28; margin-bottom: 10px; }
+  .envelope.open .letter { top: -31%; height: 160%; }
+  .footer-note { max-width: 280px; font-size: .85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
